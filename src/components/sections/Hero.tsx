@@ -11,10 +11,21 @@ const role = 'Computer Vision Engineer';
 
 export default function Hero() {
   const statusRef = useRef<HTMLSpanElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const hasAnimated = useRef(false);
+  const [particleCount, setParticleCount] = useState(40);
 
   useEffect(() => {
-    if (hasAnimated) return;
+    const handleResize = () => {
+      setParticleCount(window.innerWidth < 768 ? 15 : 40);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (hasAnimated.current) return;
 
     // Animate status value with Anime.js
     const timer = setTimeout(() => {
@@ -27,11 +38,11 @@ export default function Hero() {
           easing: 'easeInOutQuad',
         });
       }
-      setHasAnimated(true);
+      hasAnimated.current = true;
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [hasAnimated]);
+  }, []);
 
   return (
     <section
@@ -40,7 +51,7 @@ export default function Hero() {
     >
       {/* Particle Network Background */}
       <ParticleNetwork
-        particleCount={40}
+        particleCount={particleCount}
         connectionDistance={150}
         mouseRepelRadius={100}
       />

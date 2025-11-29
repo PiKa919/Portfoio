@@ -5,38 +5,57 @@
   /* Color Palette - Cyberpunk Minimalism */
   --bg-void: #0a0a0a;
   --bg-pure-black: #000000;
-  
+
   --primary-cyan: #00f3ff;
   --secondary-purple: #bd00ff;
   --tertiary-green: #00ff88;
-  
+
   --text-body: #e8e8e8;
   --text-header: #ffffff;
   --text-muted: #4a4a4a;
-  
+
+  /* Semantic Variables for Theming */
+  --color-background: var(--bg-void);
+  --color-foreground: var(--text-body);
+  --color-accent: var(--primary-cyan);
+  --color-secondary: var(--secondary-purple);
+  --color-border: rgba(0, 243, 255, 0.1);
+
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+  --gradient-primary: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
   --gradient-glow: 0 0 20px rgba(0, 243, 255, 0.5);
-  
+
   /* Spacing */
   --section-padding: clamp(4rem, 10vw, 8rem);
-  
-  /* Default mode */
-  --background: var(--bg-void);
-  --foreground: var(--text-body);
-  --accent: var(--primary-cyan);
+}
+
+/* ===== VISION MODE THEME ===== */
+body.vision-mode {
+  --color-background: var(--bg-pure-black);
+  --color-foreground: var(--tertiary-green);
+  --color-accent: var(--tertiary-green);
+  --color-secondary: var(--tertiary-green);
+  --color-border: rgba(0, 255, 136, 0.4);
+
+  --text-header: var(--tertiary-green);
+  --text-body: var(--tertiary-green);
+  --text-muted: rgba(0, 255, 136, 0.7);
+
+  filter: contrast(1.2);
 }
 
 /* ===== TAILWIND THEME INLINE ===== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
   --color-void: #0a0a0a;
-  --color-cyan: #00f3ff;
-  --color-purple: #bd00ff;
+
+  /* Dynamic Theme Colors */
+  --color-cyan: var(--color-accent);
+  --color-purple: var(--color-secondary);
   --color-matrix: #00ff88;
-  --color-muted: #4a4a4a;
-  
+  --color-muted: var(--text-muted);
+
   --font-sans: var(--font-inter);
   --font-mono: var(--font-fira-code);
   --font-gaming: var(--font-orbitron);
@@ -48,6 +67,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border-color: var(--color-border);
 }
 
 html {
@@ -55,21 +75,28 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-gaming), var(--font-mono), 'Fira Code', monospace;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--text-header);
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
 h1 {
@@ -89,12 +116,12 @@ h3 {
 
 p {
   font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: var(--text-body);
+  color: var(--color-foreground);
 }
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: var(--primary-cyan);
+  background: var(--color-accent);
   color: var(--bg-void);
 }
 
@@ -104,7 +131,7 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-void);
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -113,68 +140,32 @@ p {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-cyan);
+  background: var(--color-accent);
 }
 
 /* ===== FOCUS INDICATORS (Accessibility) ===== */
 *:focus-visible {
-  outline: 2px solid var(--primary-cyan);
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }
 
 /* ===== LINKS ===== */
 a {
-  color: var(--primary-cyan);
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--secondary-purple);
+  color: var(--color-secondary);
 }
 
-/* ===== VISION MODE STYLES ===== */
-body.vision-mode {
-  --background: var(--bg-pure-black);
-  --foreground: var(--tertiary-green);
-  --accent: var(--tertiary-green);
-  filter: contrast(1.2);
-}
-
-body.vision-mode * {
-  border-color: rgba(0, 255, 136, 0.2) !important;
-}
-
-body.vision-mode h1,
-body.vision-mode h2,
-body.vision-mode h3,
-body.vision-mode p,
-body.vision-mode span {
-  color: var(--tertiary-green) !important;
-}
-
-body.vision-mode a {
-  color: var(--tertiary-green) !important;
-}
-
-body.vision-mode .vision-box::before {
-  content: "conf: " attr(data-confidence);
-  position: absolute;
-  top: -20px;
-  left: 0;
-  font-size: 10px;
-  color: var(--tertiary-green);
-  font-family: 'Fira Code', monospace;
-  opacity: 1;
-}
-
-body.vision-mode .vision-box {
-  border: 1px solid rgba(0, 255, 136, 0.4) !important;
-  position: relative;
-}
+/* ===== VISION MODE SPECIFICS ===== */
+/* Moved to VisionOverlay.module.css */
 
 /* ===== REDUCED MOTION (Accessibility) ===== */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -205,6 +196,13 @@ body.vision-mode .vision-box {
   background-clip: text;
 }
 
+/* Vision mode override for gradient text */
+body.vision-mode .gradient-text {
+  background: none;
+  -webkit-text-fill-color: var(--tertiary-green);
+  color: var(--tertiary-green);
+}
+
 .section-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -215,7 +213,7 @@ body.vision-mode .vision-box {
   align-items: center;
 }
 
-.section-container > * {
+.section-container>* {
   width: 100%;
   max-width: 100%;
 }
@@ -225,12 +223,12 @@ body.vision-mode .vision-box {
   .section-container {
     padding: 3rem 1rem;
   }
-  
+
   /* Hide complex animations on mobile for performance */
   .particle-canvas {
     opacity: 0.3;
   }
-  
+
   /* Reduce glitch effect intensity on mobile */
   .glitch::before,
   .glitch::after {
@@ -240,19 +238,21 @@ body.vision-mode .vision-box {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+
   /* Increase tap target sizes */
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Disable hover effects on touch devices */
   .btn-primary:hover::before {
     left: -100%;
   }
-  
+
   .btn-primary:active {
-    background: var(--primary-cyan);
+    background: var(--color-accent);
     color: var(--bg-void);
   }
 }
@@ -272,7 +272,7 @@ body.vision-mode .vision-box {
 /* ===== TERMINAL STYLES ===== */
 .terminal-text {
   font-family: var(--font-mono), 'Fira Code', monospace;
-  color: var(--primary-cyan);
+  color: var(--color-accent);
 }
 
 .cursor-blink {
@@ -280,8 +280,15 @@ body.vision-mode .vision-box {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ===== PARTICLE CANVAS ===== */
@@ -297,10 +304,16 @@ body.vision-mode .vision-box {
 
 /* ===== GRID BACKGROUND ===== */
 .grid-background {
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+body.vision-mode .grid-background {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
 }
 
 /* ===== GLITCH EFFECT ===== */
@@ -320,37 +333,63 @@ body.vision-mode .vision-box {
 
 .glitch::before {
   left: 2px;
-  text-shadow: -2px 0 var(--primary-cyan);
+  text-shadow: -2px 0 var(--color-accent);
   clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
   animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
 .glitch::after {
   left: -2px;
-  text-shadow: -2px 0 var(--secondary-purple);
+  text-shadow: -2px 0 var(--color-secondary);
   clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
   animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-anim-1 {
-  0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
-  25% { clip-path: polygon(0 15%, 100% 15%, 100% 50%, 0 50%); }
-  50% { clip-path: polygon(0 40%, 100% 40%, 100% 75%, 0 75%); }
-  75% { clip-path: polygon(0 60%, 100% 60%, 100% 95%, 0 95%); }
+
+  0%,
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+
+  25% {
+    clip-path: polygon(0 15%, 100% 15%, 100% 50%, 0 50%);
+  }
+
+  50% {
+    clip-path: polygon(0 40%, 100% 40%, 100% 75%, 0 75%);
+  }
+
+  75% {
+    clip-path: polygon(0 60%, 100% 60%, 100% 95%, 0 95%);
+  }
 }
 
 @keyframes glitch-anim-2 {
-  0%, 100% { clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
-  25% { clip-path: polygon(0 45%, 100% 45%, 100% 80%, 0 80%); }
-  50% { clip-path: polygon(0 25%, 100% 25%, 100% 60%, 0 60%); }
-  75% { clip-path: polygon(0 5%, 100% 5%, 100% 40%, 0 40%); }
+
+  0%,
+  100% {
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  25% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 80%, 0 80%);
+  }
+
+  50% {
+    clip-path: polygon(0 25%, 100% 25%, 100% 60%, 0 60%);
+  }
+
+  75% {
+    clip-path: polygon(0 5%, 100% 5%, 100% 40%, 0 40%);
+  }
 }
 
 /* ===== BUTTON STYLES ===== */
 .btn-primary {
   background: transparent;
-  border: 2px solid var(--primary-cyan);
-  color: var(--primary-cyan);
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
   padding: 0.75rem 1.5rem;
   font-family: var(--font-mono), monospace;
   font-size: 0.875rem;
@@ -367,7 +406,7 @@ body.vision-mode .vision-box {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: var(--primary-cyan);
+  background: var(--color-accent);
   transition: left 0.3s ease;
   z-index: -1;
 }
