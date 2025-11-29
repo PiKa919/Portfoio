@@ -77,7 +77,7 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="relative min-h-screen py-20">
+    <section id="projects" className="relative min-h-screen py-16 md:py-20">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/95 to-void" />
 
@@ -88,13 +88,13 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="section-container mb-8"
+          className="section-container px-4 sm:px-6 mb-6 md:mb-8"
         >
-          <span className="font-mono text-cyan text-sm tracking-wider">
+          <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// MODEL ZOO'}
           </span>
-          <h2 className="mt-4 gradient-text">Featured Projects</h2>
-          <p className="mt-4 text-gray-400 max-w-2xl">
+          <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Featured Projects</h2>
+          <p className="mt-3 md:mt-4 text-gray-400 text-sm sm:text-base max-w-2xl">
             A collection of computer vision and machine learning projects that
             demonstrate end-to-end pipeline development, from research to deployment.
           </p>
@@ -186,12 +186,12 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
       whileHover={{ y: -10 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`w-[350px] md:w-[400px] h-[480px] bg-void/80 backdrop-blur-sm border rounded-xl p-6 cursor-pointer transition-all duration-300 flex flex-col ${
+      className={`w-[280px] sm:w-[320px] md:w-[400px] h-[420px] sm:h-[450px] md:h-[480px] bg-void/80 backdrop-blur-sm border rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer transition-all duration-300 flex flex-col ${
         colorClasses[project.color as keyof typeof colorClasses]
       } ${glowClasses[project.color as keyof typeof glowClasses]}`}
     >
       {/* Preview Area */}
-      <div className="h-40 bg-black/50 rounded-lg mb-6 overflow-hidden relative">
+      <div className="h-32 sm:h-36 md:h-40 bg-black/50 rounded-lg mb-4 sm:mb-5 md:mb-6 overflow-hidden relative">
         {/* Animated preview placeholder */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div

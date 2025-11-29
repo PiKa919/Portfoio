@@ -158,7 +158,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative min-h-screen py-24 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-24 overflow-hidden"
     >
       {/* Animated Background Grid */}
       <div className="absolute inset-0">
@@ -174,35 +174,35 @@ export default function Skills() {
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-4">
-            <span className="w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
-            <span className="text-cyan font-mono text-sm tracking-[0.3em] uppercase">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
+            <span className="text-cyan font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase">
               System.hyperparameters
             </span>
-            <span className="w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
             <span className="bg-gradient-to-r from-cyan via-purple to-matrix bg-clip-text text-transparent">
               Tech Stack
             </span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {/* Left: Hexagonal Category Selector */}
-          <div className="lg:col-span-4 flex flex-col items-center justify-center">
-            <div className="relative">
+          <div className="lg:col-span-4 flex flex-col items-center justify-center order-1 lg:order-1">
+            <div className="relative w-full max-w-xs mx-auto">
               {/* Hexagonal buttons arranged in a pattern */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 sm:grid-cols-2 gap-2 sm:gap-4 justify-items-center">
                 {skillCategories.map((category, index) => (
                   <motion.button
                     key={category.id}
@@ -210,11 +210,11 @@ export default function Skills() {
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     onClick={() => setActiveCategory(index)}
-                    className={`skill-hex relative group ${index === 2 ? "col-span-2 justify-self-center" : ""}`}
+                    className={`skill-hex relative group ${index === 4 ? "col-start-2 sm:col-span-2 sm:justify-self-center" : ""}`}
                   >
                     <div
                       className={`
-                        relative w-28 h-28 flex flex-col items-center justify-center
+                        relative w-20 h-20 sm:w-28 sm:h-28 flex flex-col items-center justify-center
                         transition-all duration-300 cursor-pointer
                         ${activeCategory === index 
                           ? "scale-110" 
@@ -229,9 +229,9 @@ export default function Skills() {
                         border: `2px solid ${activeCategory === index ? category.color : "rgba(255,255,255,0.1)"}`,
                       }}
                     >
-                      <span className="text-3xl mb-1">{category.icon}</span>
+                      <span className="text-2xl sm:text-3xl mb-1">{category.icon}</span>
                       <span 
-                        className="text-xs font-[family-name:var(--font-gaming)] tracking-wider text-center px-2"
+                        className="text-[10px] sm:text-xs font-[family-name:var(--font-gaming)] tracking-wider text-center px-1 sm:px-2"
                         style={{ color: activeCategory === index ? category.color : "#888" }}
                       >
                         {category.name.split(" ")[0]}
@@ -256,27 +256,27 @@ export default function Skills() {
           </div>
 
           {/* Center: Skills Display */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 order-2 lg:order-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-6"
+              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-4 sm:p-6"
               style={{
                 borderColor: skillCategories[activeCategory].color + "33",
               }}
             >
               {/* Category Header */}
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                <span className="text-4xl">{skillCategories[activeCategory].icon}</span>
+              <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
+                <span className="text-3xl sm:text-4xl">{skillCategories[activeCategory].icon}</span>
                 <div>
                   <h3 
-                    className="font-[family-name:var(--font-gaming)] text-xl tracking-wide"
+                    className="font-[family-name:var(--font-gaming)] text-lg sm:text-xl tracking-wide"
                     style={{ color: skillCategories[activeCategory].color }}
                   >
                     {skillCategories[activeCategory].name}
                   </h3>
-                  <p className="text-muted text-sm font-mono">
+                  <p className="text-muted text-xs sm:text-sm font-mono">
                     {skillCategories[activeCategory].skills.length} modules loaded
                   </p>
                 </div>
@@ -323,8 +323,8 @@ export default function Skills() {
             </motion.div>
           </div>
 
-          {/* Right: Terminal Output */}
-          <div className="lg:col-span-3">
+          {/* Right: Terminal Output - Hidden on mobile */}
+          <div className="hidden md:block lg:col-span-3 order-3">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -368,7 +368,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 flex flex-wrap justify-center gap-8"
+          className="mt-10 md:mt-16 flex flex-wrap justify-center gap-6 sm:gap-8"
         >
           {[
             { label: "Languages", value: "4+", color: "#00f3ff" },
@@ -381,12 +381,12 @@ export default function Skills() {
               className="text-center group"
             >
               <div 
-                className="font-[family-name:var(--font-gaming)] text-4xl mb-1 transition-all duration-300 group-hover:scale-110"
+                className="font-[family-name:var(--font-gaming)] text-3xl sm:text-4xl mb-1 transition-all duration-300 group-hover:scale-110"
                 style={{ color: stat.color }}
               >
                 {stat.value}
               </div>
-              <div className="text-muted text-xs font-mono uppercase tracking-wider">
+              <div className="text-muted text-[10px] sm:text-xs font-mono uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

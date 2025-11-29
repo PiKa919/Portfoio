@@ -98,7 +98,7 @@ export default function Certifications() {
     <section
       ref={sectionRef}
       id="certifications"
-      className="relative min-h-screen py-24 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-24 overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -114,23 +114,23 @@ export default function Certifications() {
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-4">
-            <span className="w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
-            <span className="text-cyan font-mono text-sm tracking-[0.3em] uppercase">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
+            <span className="text-cyan font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase">
               System.achievements
             </span>
-            <span className="w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
             <span className="bg-gradient-to-r from-cyan via-purple to-matrix bg-clip-text text-transparent">
               Achievements & Certs
             </span>
@@ -138,14 +138,14 @@ export default function Certifications() {
         </motion.div>
 
         {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto mb-12 md:mb-20">
           {achievements.map((item) => (
             <div
               key={item.title}
               className="achievement-card opacity-0"
             >
               <div
-                className="relative p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden group hover:border-opacity-50 transition-all duration-300"
+                className="relative p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden group hover:border-opacity-50 transition-all duration-300"
                 style={{ borderColor: item.color + "33" }}
               >
                 {/* Glow effect on hover */}
@@ -157,9 +157,9 @@ export default function Certifications() {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex gap-4">
+                <div className="relative z-10 flex gap-3 md:gap-4">
                   <div
-                    className="flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center text-2xl"
+                    className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center text-xl md:text-2xl"
                     style={{ background: item.color + "22" }}
                   >
                     {item.icon}
@@ -259,7 +259,7 @@ export default function Certifications() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
-          className="mt-16 flex flex-wrap justify-center gap-12"
+          className="mt-10 md:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 md:gap-12 max-w-2xl mx-auto"
         >
           {[
             { value: "8+", label: "Certifications", color: "#00f3ff" },
@@ -269,12 +269,12 @@ export default function Certifications() {
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div
-                className="font-[family-name:var(--font-gaming)] text-4xl mb-1"
+                className="font-[family-name:var(--font-gaming)] text-2xl sm:text-3xl md:text-4xl mb-1"
                 style={{ color: stat.color }}
               >
                 {stat.value}
               </div>
-              <div className="text-muted text-xs font-mono uppercase tracking-wider">
+              <div className="text-muted text-[10px] sm:text-xs font-mono uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

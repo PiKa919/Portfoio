@@ -212,6 +212,43 @@ body.vision-mode .vision-box {
   text-align: center;
 }
 
+/* ===== MOBILE-SPECIFIC UTILITIES ===== */
+@media (max-width: 640px) {
+  .section-container {
+    padding: 3rem 1rem;
+  }
+  
+  /* Hide complex animations on mobile for performance */
+  .particle-canvas {
+    opacity: 0.3;
+  }
+  
+  /* Reduce glitch effect intensity on mobile */
+  .glitch::before,
+  .glitch::after {
+    display: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase tap target sizes */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Disable hover effects on touch devices */
+  .btn-primary:hover::before {
+    left: -100%;
+  }
+  
+  .btn-primary:active {
+    background: var(--primary-cyan);
+    color: var(--bg-void);
+  }
+}
+
 .section-container h2,
 .section-container h3 {
   text-align: center;

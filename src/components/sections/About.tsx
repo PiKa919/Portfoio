@@ -31,46 +31,46 @@ export default function About() {
     <section
       id="about"
       ref={containerRef}
-      className="relative min-h-screen py-20 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-20 overflow-hidden"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-void via-void/95 to-void" />
 
-      <div className="relative z-10 section-container">
+      <div className="relative z-10 section-container px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
-          <span className="font-mono text-cyan text-sm tracking-wider">
+          <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// SYSTEM IDENTIFICATION'}
           </span>
-          <h2 className="mt-4 gradient-text">From Data to Deployment</h2>
+          <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">From Data to Deployment</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
           {/* Left Column - Image with CV Overlay */}
           <motion.div
             style={{ y: imageY }}
-            className="relative lg:sticky lg:top-32"
+            className="relative lg:sticky lg:top-32 mx-auto w-full max-w-sm lg:max-w-none"
           >
             <VisionOverlay
               confidence={0.99}
               label="FACE"
-              className="w-full max-w-md mx-auto"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               delay={0.2}
             >
               <div className="relative aspect-[3/4] bg-gradient-to-br from-cyan/10 to-purple/10 rounded-lg overflow-hidden border border-cyan/20">
                 {/* Placeholder for actual portrait image */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan/30 to-purple/30 flex items-center justify-center">
-                      <span className="text-4xl font-mono text-cyan">AD</span>
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan/30 to-purple/30 flex items-center justify-center">
+                      <span className="text-3xl sm:text-4xl font-mono text-cyan">AD</span>
                     </div>
-                    <p className="text-sm text-muted font-mono">
+                    <p className="text-xs sm:text-sm text-muted font-mono">
                       [Portrait Image]
                     </p>
                   </div>
@@ -156,13 +156,13 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <p className="text-lg leading-relaxed">
+              <p className="text-base sm:text-lg leading-relaxed">
                 I build vision systems that{' '}
                 <span className="text-cyan font-semibold">see</span>,{' '}
                 <span className="text-purple font-semibold">understand</span>, and{' '}
                 <span className="text-matrix font-semibold">act</span>.
               </p>
-              <p className="mt-4 text-gray-400 leading-relaxed">
+              <p className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
                 As a Computer Vision Engineer, I specialize in designing and deploying
                 end-to-end machine learning pipelines that transform raw visual data
                 into actionable insights. My work spans from training deep learning
@@ -230,13 +230,13 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mt-8 p-4 bg-black/50 border border-cyan/20 rounded-lg font-mono text-sm"
+              className="mt-6 md:mt-8 p-3 sm:p-4 bg-black/50 border border-cyan/20 rounded-lg font-mono text-xs sm:text-sm"
             >
               <div className="text-muted mb-2">$ cat current_focus.txt</div>
-              <div className="text-cyan">
+              <div className="text-cyan break-words">
                 {'>>'} Honing Generative AI & MultiModal Models
               </div>
-              <div className="text-matrix mt-1">
+              <div className="text-matrix mt-1 break-words">
                 {'>>'} Status: ACTIVE | Building the future of vision AI
               </div>
             </motion.div>

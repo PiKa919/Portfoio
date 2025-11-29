@@ -131,30 +131,30 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen py-20">
+    <section id="contact" className="relative min-h-screen py-16 md:py-20">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/95 to-void" />
 
-      <div className="relative z-10 section-container">
+      <div className="relative z-10 section-container px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="font-mono text-cyan text-sm tracking-wider">
+          <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// HANDSHAKE PROTOCOL'}
           </span>
-          <h2 className="mt-4 gradient-text">Get in Touch</h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+          <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Get in Touch</h2>
+          <p className="mt-3 md:mt-4 text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
             Ready to collaborate on AI/ML projects or discuss opportunities?
             Initialize a connection below.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             variants={fadeInUp}

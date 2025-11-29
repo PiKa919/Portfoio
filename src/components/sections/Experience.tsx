@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import anime from "animejs";
 
 interface ExperienceItem {
   id: string;
@@ -76,6 +75,7 @@ export default function Experience() {
   const terminalBodyRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+  const [lineColors, setLineColors] = useState<string[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const hasAnimated = useRef(false);
 
@@ -140,7 +140,6 @@ export default function Experience() {
   useEffect(() => {
     if (isInView && !hasAnimated.current) {
       hasAnimated.current = true;
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional for animation trigger
       setIsTyping(true);
 
       const lines = generateLines();
@@ -148,20 +147,12 @@ export default function Experience() {
       lines.forEach((line, index) => {
         setTimeout(() => {
           setDisplayedLines(prev => [...prev, line.text]);
+          setLineColors(prev => [...prev, line.color]);
           
           // Scroll terminal to bottom
           if (terminalBodyRef.current) {
             terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
           }
-
-          // Animate the new line with anime.js
-          anime({
-            targets: `.terminal-line-${index}`,
-            opacity: [0, 1],
-            translateX: [-10, 0],
-            duration: 300,
-            easing: "easeOutQuad",
-          });
 
           if (index === lines.length - 1) {
             setIsTyping(false);
@@ -171,49 +162,44 @@ export default function Experience() {
     }
   }, [isInView]);
 
-  const getLineColor = (index: number) => {
-    const lines = generateLines();
-    return lines[index]?.color || "#e8e8e8";
-  };
-
   return (
     <section
       ref={sectionRef}
       id="experience"
-      className="relative min-h-screen py-24 overflow-hidden"
+      className="relative min-h-screen py-16 md:py-24 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void to-void/95" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <div className="inline-flex items-center gap-3 mb-4">
-            <span className="w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
-            <span className="text-cyan font-mono text-sm tracking-[0.3em] uppercase">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
+            <span className="text-cyan font-mono text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase">
               Execution.logs
             </span>
-            <span className="w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
+            <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-l from-transparent to-cyan" />
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center">
             <span className="bg-gradient-to-r from-cyan via-purple to-matrix bg-clip-text text-transparent">
               Experience
             </span>
           </h2>
         </motion.div>
 
-        {/* Terminal Window */}
+        {/* Terminal Window - Hidden on mobile, visible on sm+ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-4xl mx-auto"
+          className="hidden sm:block max-w-4xl mx-auto mb-8 md:mb-12"
         >
           {/* Terminal Header */}
           <div className="bg-gray-900/80 backdrop-blur-sm rounded-t-xl px-4 py-3 flex items-center gap-3 border-b border-white/10">
@@ -232,15 +218,15 @@ export default function Experience() {
           {/* Terminal Body */}
           <div
             ref={terminalBodyRef}
-            className="bg-black/80 backdrop-blur-sm rounded-b-xl p-6 font-mono text-sm border border-t-0 border-cyan/20 min-h-[400px] max-h-[500px] overflow-y-auto"
+            className="bg-black/90 backdrop-blur-sm rounded-b-xl p-4 md:p-6 font-mono text-xs md:text-sm border border-t-0 border-cyan/20 min-h-[300px] max-h-[400px] overflow-y-auto"
             style={{ scrollBehavior: "smooth" }}
           >
             {displayedLines.map((line, index) => (
               <div
                 key={index}
-                className={`terminal-line-${index} whitespace-pre opacity-0`}
+                className="whitespace-pre-wrap break-words leading-relaxed"
                 style={{ 
-                  color: getLineColor(index),
+                  color: lineColors[index] || "#e8e8e8",
                   minHeight: line === "" ? "1em" : "auto",
                 }}
               >
@@ -255,29 +241,29 @@ export default function Experience() {
           </div>
         </motion.div>
 
-        {/* Experience Cards (Mobile/Visual Alternative) */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* Experience Cards */}
+        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className="group"
             >
               <div
-                className="p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300"
+                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300"
                 style={{ borderColor: exp.color + "33" }}
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
                     <span
                       className="text-xs font-mono"
                       style={{ color: exp.color }}
                     >
                       {exp.period}
                     </span>
-                    <h3 className="font-[family-name:var(--font-gaming)] text-white text-lg mt-1">
+                    <h3 className="font-[family-name:var(--font-gaming)] text-white text-base md:text-lg mt-1">
                       {exp.title}
                     </h3>
                     <p className="text-purple text-sm font-mono mt-1">
@@ -285,7 +271,7 @@ export default function Experience() {
                     </p>
                   </div>
                   <span
-                    className="px-2 py-1 text-xs font-mono rounded shrink-0"
+                    className="px-2 py-1 text-[10px] md:text-xs font-mono rounded shrink-0"
                     style={{
                       background: exp.color + "22",
                       color: exp.color,
@@ -295,11 +281,11 @@ export default function Experience() {
                   </span>
                 </div>
 
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-3 md:mt-4 space-y-2">
                   {exp.details.slice(0, 3).map((detail, i) => (
-                    <li key={i} className="text-muted text-sm flex items-start gap-2">
-                      <span style={{ color: exp.color }}>▸</span>
-                      {detail}
+                    <li key={i} className="text-muted text-xs md:text-sm flex items-start gap-2">
+                      <span className="shrink-0" style={{ color: exp.color }}>▸</span>
+                      <span className="break-words">{detail}</span>
                     </li>
                   ))}
                 </ul>
