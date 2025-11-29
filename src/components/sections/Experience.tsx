@@ -171,13 +171,13 @@ export default function Experience() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void to-void/95" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-12 md:mb-16 w-full"
         >
           <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
             <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
@@ -199,7 +199,7 @@ export default function Experience() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="hidden sm:block max-w-4xl mx-auto mb-8 md:mb-12"
+          className="hidden sm:block w-full max-w-4xl mb-8 md:mb-12"
         >
           {/* Terminal Header */}
           <div className="bg-gray-900/80 backdrop-blur-sm rounded-t-xl px-4 py-3 flex items-center gap-3 border-b border-white/10">
@@ -218,7 +218,7 @@ export default function Experience() {
           {/* Terminal Body */}
           <div
             ref={terminalBodyRef}
-            className="bg-black/90 backdrop-blur-sm rounded-b-xl p-4 md:p-6 font-mono text-xs md:text-sm border border-t-0 border-cyan/20 min-h-[300px] max-h-[400px] overflow-y-auto"
+            className="bg-black/90 backdrop-blur-sm rounded-b-xl p-4 md:p-6 font-mono text-xs md:text-sm border border-t-0 border-cyan/20 min-h-[300px] max-h-[400px] overflow-y-auto text-left"
             style={{ scrollBehavior: "smooth" }}
           >
             {displayedLines.map((line, index) => (
@@ -242,7 +242,7 @@ export default function Experience() {
         </motion.div>
 
         {/* Experience Cards */}
-        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full max-w-5xl">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
@@ -252,7 +252,7 @@ export default function Experience() {
               className="group"
             >
               <div
-                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300"
+                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300 text-left"
                 style={{ borderColor: exp.color + "33" }}
               >
                 <div className="flex items-start justify-between gap-3">

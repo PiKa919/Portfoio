@@ -43,7 +43,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-10 md:mb-16"
+          className="mb-10 md:mb-16 w-full"
         >
           <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// SYSTEM IDENTIFICATION'}
@@ -51,11 +51,11 @@ export default function About() {
           <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">From Data to Deployment</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start w-full">
           {/* Left Column - Image with CV Overlay */}
           <motion.div
             style={{ y: imageY }}
-            className="relative lg:sticky lg:top-32 mx-auto w-full max-w-sm lg:max-w-none"
+            className="relative lg:sticky lg:top-32 mx-auto w-full max-w-sm lg:max-w-none flex flex-col items-center"
           >
             <VisionOverlay
               confidence={0.99}
@@ -148,13 +148,14 @@ export default function About() {
           </motion.div>
 
           {/* Right Column - Content */}
-          <motion.div style={{ y: contentY }} className="space-y-8 text-center lg:text-left">
+          <motion.div style={{ y: contentY }} className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
             {/* Bio */}
             <motion.div
               variants={fadeInLeft}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              className="w-full"
             >
               <p className="text-base sm:text-lg leading-relaxed">
                 I build vision systems that{' '}

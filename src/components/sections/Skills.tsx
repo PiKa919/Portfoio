@@ -174,13 +174,13 @@ export default function Skills() {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16"
+          className="text-center mb-10 md:mb-16 w-full"
         >
           <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
             <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
@@ -197,7 +197,7 @@ export default function Skills() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
           {/* Left: Hexagonal Category Selector */}
           <div className="lg:col-span-4 flex flex-col items-center justify-center order-1 lg:order-1">
             <div className="relative w-full max-w-xs mx-auto">
@@ -261,7 +261,7 @@ export default function Skills() {
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-4 sm:p-6"
+              className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-4 sm:p-6 text-left"
               style={{
                 borderColor: skillCategories[activeCategory].color + "33",
               }}

@@ -142,7 +142,7 @@ export default function Contact() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-8 md:mb-12 w-full"
         >
           <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// HANDSHAKE PROTOCOL'}
@@ -154,7 +154,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full max-w-6xl text-left">
           {/* Contact Form */}
           <motion.div
             variants={fadeInUp}
