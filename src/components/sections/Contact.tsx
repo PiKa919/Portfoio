@@ -239,8 +239,8 @@ export default function Contact() {
                 type="submit"
                 disabled={isSubmitting}
                 className={`w-full py-4 font-mono text-sm border-2 rounded-lg transition-all ${isSubmitting
-                    ? 'border-muted text-muted cursor-not-allowed'
-                    : 'border-cyan text-cyan hover:bg-cyan hover:text-void'
+                  ? 'border-muted text-muted cursor-not-allowed'
+                  : 'border-cyan text-cyan hover:bg-cyan hover:text-void'
                   }`}
                 whileHover={!isSubmitting ? { scale: 1.02, boxShadow: '0 0 25px rgba(0, 243, 255, 0.5)' } : {}}
                 whileTap={!isSubmitting ? { scale: 0.98 } : {}}
@@ -355,7 +355,7 @@ export default function Contact() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="relative z-10 mt-12 pt-6 pb-6 border-t border-cyan/10"
+        className="relative z-10 mt-4 pt-3 pb-4 border-t border-cyan/10"
       >
         <div className="w-full max-w-7xl mx-auto px-4 text-center">
           <p className="font-mono text-sm text-muted">
