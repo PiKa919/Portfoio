@@ -157,7 +157,7 @@ export default function Certifications() {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex gap-3 md:gap-4">
+                <div className="relative z-10 flex flex-col items-center text-center gap-3 md:gap-4">
                   <div
                     className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-lg flex items-center justify-center text-xl md:text-2xl"
                     style={{ background: item.color + "22" }}
@@ -165,21 +165,19 @@ export default function Certifications() {
                     {item.icon}
                   </div>
 
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <h3 className="font-[family-name:var(--font-gaming)] text-white text-lg tracking-wide">
-                          {item.title}
-                        </h3>
-                        <p
-                          className="font-mono text-sm"
-                          style={{ color: item.color }}
-                        >
-                          {item.subtitle}
-                        </p>
-                      </div>
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col items-center gap-2 mb-2">
+                      <h3 className="font-[family-name:var(--font-gaming)] text-white text-lg tracking-wide">
+                        {item.title}
+                      </h3>
+                      <p
+                        className="font-mono text-sm"
+                        style={{ color: item.color }}
+                      >
+                        {item.subtitle}
+                      </p>
                       <span
-                        className="px-2 py-1 text-xs font-mono rounded"
+                        className="px-2 py-1 text-xs font-mono rounded inline-block"
                         style={{
                           background: item.color + "22",
                           color: item.color,

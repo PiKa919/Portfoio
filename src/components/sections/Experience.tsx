@@ -94,37 +94,37 @@ export default function Experience() {
     delay += 100;
 
     experiences.forEach((exp) => {
-      lines.push({ 
-        text: `│ [${exp.period}] ${exp.title}`, 
-        color: exp.color, 
-        delay: delay 
+      lines.push({
+        text: `│ [${exp.period}] ${exp.title}`,
+        color: exp.color,
+        delay: delay
       });
       delay += 150;
-      
-      lines.push({ 
-        text: `│ ├─ Role: ${exp.role}`, 
-        color: "#bd00ff", 
-        delay: delay 
+
+      lines.push({
+        text: `│ ├─ Role: ${exp.role}`,
+        color: "#bd00ff",
+        delay: delay
       });
       delay += 100;
 
       exp.details.forEach((detail, i) => {
         const prefix = i === exp.details.length - 1 ? "└─" : "├─";
-        lines.push({ 
-          text: `│ │  ${prefix} ${detail}`, 
-          color: "#e8e8e8", 
-          delay: delay 
+        lines.push({
+          text: `│ │  ${prefix} ${detail}`,
+          color: "#e8e8e8",
+          delay: delay
         });
         delay += 80;
       });
 
-      lines.push({ 
-        text: `│ └─ Status: ${exp.status}`, 
-        color: exp.status === "ACTIVE" ? "#00ff88" : exp.status === "ACHIEVEMENT" ? "#ffd700" : "#00f3ff", 
-        delay: delay 
+      lines.push({
+        text: `│ └─ Status: ${exp.status}`,
+        color: exp.status === "ACTIVE" ? "#00ff88" : exp.status === "ACHIEVEMENT" ? "#ffd700" : "#00f3ff",
+        delay: delay
       });
       delay += 150;
-      
+
       lines.push({ text: "│", color: "#4a4a4a", delay: delay });
       delay += 100;
     });
@@ -143,12 +143,12 @@ export default function Experience() {
       setIsTyping(true);
 
       const lines = generateLines();
-      
+
       lines.forEach((line, index) => {
         setTimeout(() => {
           setDisplayedLines(prev => [...prev, line.text]);
           setLineColors(prev => [...prev, line.color]);
-          
+
           // Scroll terminal to bottom
           if (terminalBodyRef.current) {
             terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
@@ -225,7 +225,7 @@ export default function Experience() {
               <div
                 key={index}
                 className="whitespace-pre-wrap break-words leading-relaxed"
-                style={{ 
+                style={{
                   color: lineColors[index] || "#e8e8e8",
                   minHeight: line === "" ? "1em" : "auto",
                 }}
@@ -233,7 +233,7 @@ export default function Experience() {
                 {line}
               </div>
             ))}
-            
+
             {/* Blinking cursor */}
             {isTyping && (
               <span className="inline-block w-2 h-4 bg-cyan animate-pulse ml-1" />
@@ -252,26 +252,24 @@ export default function Experience() {
               className="group"
             >
               <div
-                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300 text-left"
+                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300 text-center flex flex-col items-center"
                 style={{ borderColor: exp.color + "33" }}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <span
-                      className="text-xs font-mono"
-                      style={{ color: exp.color }}
-                    >
-                      {exp.period}
-                    </span>
-                    <h3 className="font-[family-name:var(--font-gaming)] text-white text-base md:text-lg mt-1">
-                      {exp.title}
-                    </h3>
-                    <p className="text-purple text-sm font-mono mt-1">
-                      {exp.role}
-                    </p>
-                  </div>
+                <div className="flex flex-col items-center gap-2 w-full mb-4">
                   <span
-                    className="px-2 py-1 text-[10px] md:text-xs font-mono rounded shrink-0"
+                    className="text-xs font-mono"
+                    style={{ color: exp.color }}
+                  >
+                    {exp.period}
+                  </span>
+                  <h3 className="font-[family-name:var(--font-gaming)] text-white text-base md:text-lg mt-1">
+                    {exp.title}
+                  </h3>
+                  <p className="text-purple text-sm font-mono mt-1">
+                    {exp.role}
+                  </p>
+                  <span
+                    className="px-2 py-1 text-[10px] md:text-xs font-mono rounded inline-block mt-2"
                     style={{
                       background: exp.color + "22",
                       color: exp.color,
@@ -281,9 +279,9 @@ export default function Experience() {
                   </span>
                 </div>
 
-                <ul className="mt-3 md:mt-4 space-y-2">
+                <ul className="space-y-2 w-full">
                   {exp.details.slice(0, 3).map((detail, i) => (
-                    <li key={i} className="text-muted text-xs md:text-sm flex items-start gap-2">
+                    <li key={i} className="text-muted text-xs md:text-sm flex items-center justify-center gap-2">
                       <span className="shrink-0" style={{ color: exp.color }}>▸</span>
                       <span className="break-words">{detail}</span>
                     </li>
