@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import Cursor from '@/components/ui/Cursor';
 import NavBar from '@/components/ui/NavBar';
 import Preloader from '@/components/ui/Preloader';
+import ParticleNetwork from '@/components/ui/ParticleNetwork';
 
 // Section Components
 import Hero from '@/components/sections/Hero';
@@ -61,34 +62,57 @@ export default function Home() {
       {/* Custom Cursor (Desktop only) */}
       <Cursor />
 
+      {/* Global Particle Network Background */}
+      {showContent && (
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <ParticleNetwork
+            particleCount={60}
+            connectionDistance={120}
+            mouseRepelRadius={80}
+          />
+        </div>
+      )}
+
       {/* Navigation */}
       {showContent && <NavBar />}
 
       {/* Main Content */}
       <main
-        className={`transition-opacity duration-500 w-full flex flex-col items-center ${showContent ? 'opacity-100' : 'opacity-0'
+        className={`relative z-10 transition-opacity duration-500 w-full flex flex-col items-center ${showContent ? 'opacity-100' : 'opacity-0'
           }`}
       >
         {/* Hero Section */}
         <Hero />
 
         {/* About Section */}
-        <About />
+        <div className="mt-16 md:mt-24 w-full">
+          <About />
+        </div>
 
         {/* Skills Section */}
-        <Skills />
+        <div className="mt-16 md:mt-24 w-full">
+          <Skills />
+        </div>
 
         {/* Certifications & Achievements Section */}
-        <Certifications />
+        <div className="mt-16 md:mt-24 w-full">
+          <Certifications />
+        </div>
 
         {/* Projects Section */}
-        <Projects />
+        <div className="mt-16 md:mt-24 w-full">
+          <Projects />
+        </div>
 
         {/* Experience Section */}
-        <Experience />
+        <div className="mt-16 md:mt-24 w-full">
+          <Experience />
+        </div>
 
         {/* Contact Section */}
-        <Contact />
+        <div className="mt-16 md:mt-24 w-full">
+          <Contact />
+        </div>
       </main>
     </>
   );

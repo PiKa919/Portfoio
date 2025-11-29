@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import anime from 'animejs';
-import ParticleNetwork from '@/components/ui/ParticleNetwork';
 import { letterContainer, letterAnimation, fadeInUp, staggerContainer } from '@/lib/animations';
 
 const name = 'ANKIT DAS';
@@ -12,18 +11,6 @@ const role = 'Computer Vision Engineer';
 export default function Hero() {
   const statusRef = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
-  const [particleCount, setParticleCount] = useState(40);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setParticleCount(window.innerWidth < 768 ? 15 : 40);
-    };
-
-    handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   useEffect(() => {
     if (hasAnimated.current) return;
 
@@ -49,13 +36,6 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Particle Network Background */}
-      <ParticleNetwork
-        particleCount={particleCount}
-        connectionDistance={150}
-        mouseRepelRadius={100}
-      />
-
       {/* Grid Background */}
       <div className="absolute inset-0 grid-background opacity-50" />
 

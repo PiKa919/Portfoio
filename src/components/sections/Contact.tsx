@@ -154,15 +154,16 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full max-w-5xl mx-auto text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full max-w-5xl mx-auto">
           {/* Contact Form */}
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            className="w-full"
           >
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 text-left">
               {/* Name Input */}
               <div>
                 <label
@@ -278,7 +279,7 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-8 w-full text-left"
           >
             {/* Terminal-style info */}
             <div className="p-4 sm:p-6 bg-black/50 border border-cyan/20 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto">
@@ -298,36 +299,13 @@ export default function Contact() {
                 <br />
                 <span className="text-purple">{'}'}</span>
               </div>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3 className="font-mono text-white mb-4 text-sm sm:text-base">Connect</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {socialLinks.map((link) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variants={staggerItem}
-                    whileHover={{ y: -5, borderColor: 'rgba(0, 243, 255, 0.5)' }}
-                    className="p-3 sm:p-4 bg-void/50 border border-cyan/20 rounded-lg flex items-start gap-3 transition-colors group"
-                  >
-                    <span className="text-cyan group-hover:text-white transition-colors">
-                      {link.icon}
-                    </span>
-                    <div>
-                      <span className="block font-mono text-white text-sm group-hover:text-cyan transition-colors">
-                        {link.name}
-                      </span>
-                      <span className="text-xs text-muted flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-matrix rounded-full" />
-                        {link.status}
-                      </span>
-                    </div>
-                  </motion.a>
-                ))}
+              
+              {/* Pac-Man Animation */}
+              <div className="pacman-game">
+                <div className="pacman-dots"></div>
+                <div className="pacman-eater"></div>
+                <div className="pacman-eater-rtl"></div>
+                <div className="pacman-character"></div>
               </div>
             </div>
 
@@ -339,13 +317,44 @@ export default function Contact() {
               <p className="text-sm text-gray-400">
                 <span className="text-purple font-mono">{'>'}</span> Prefer a quick
                 chat? I&apos;m most active on{' '}
-                <a href="#" className="text-cyan hover:underline">
+                <a href="https://linkedin.com/in/ankitdas919" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline">
                   LinkedIn
                 </a>{' '}
                 for professional discussions.
               </p>
             </motion.div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* CONNECT Section - Separate Slim Section */}
+      <div className="relative z-10 w-full py-10 mt-12 bg-black/30 border-y border-cyan/20">
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <h3 className="font-[family-name:var(--font-gaming)] text-white mb-8 text-2xl tracking-[0.3em] uppercase">
+            <span className="text-cyan">{'{'}</span> Connect <span className="text-cyan">{'}'}</span>
+          </h3>
+          <div className="flex justify-center items-center gap-6 sm:gap-10 md:gap-14">
+            {socialLinks.map((link) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -8, scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex flex-col items-center gap-3 group"
+              >
+                <div className="w-14 h-14 rounded-xl bg-void/80 border border-cyan/30 flex items-center justify-center group-hover:border-cyan group-hover:shadow-[0_0_20px_rgba(0,243,255,0.3)] transition-all duration-300">
+                  <span className="text-cyan group-hover:text-white transition-colors text-2xl">
+                    {link.icon}
+                  </span>
+                </div>
+                <span className="font-mono text-muted text-xs group-hover:text-cyan transition-colors">
+                  {link.name}
+                </span>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -241,56 +241,7 @@ export default function Experience() {
           </div>
         </motion.div>
 
-        {/* Experience Cards */}
-        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full max-w-5xl mx-auto">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="group"
-            >
-              <div
-                className="h-full p-4 md:p-6 bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl hover:border-opacity-50 transition-all duration-300 text-center flex flex-col items-center"
-                style={{ borderColor: exp.color + "33" }}
-              >
-                <div className="flex flex-col items-center gap-2 w-full mb-4">
-                  <span
-                    className="text-xs font-mono"
-                    style={{ color: exp.color }}
-                  >
-                    {exp.period}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-gaming)] text-white text-base md:text-lg mt-1">
-                    {exp.title}
-                  </h3>
-                  <p className="text-purple text-sm font-mono mt-1">
-                    {exp.role}
-                  </p>
-                  <span
-                    className="px-2 py-1 text-[10px] md:text-xs font-mono rounded inline-block mt-2"
-                    style={{
-                      background: exp.color + "22",
-                      color: exp.color,
-                    }}
-                  >
-                    {exp.status}
-                  </span>
-                </div>
 
-                <ul className="space-y-2 w-full">
-                  {exp.details.slice(0, 3).map((detail, i) => (
-                    <li key={i} className="text-muted text-xs md:text-sm flex items-center justify-center gap-2">
-                      <span className="shrink-0" style={{ color: exp.color }}>▸</span>
-                      <span className="break-words">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

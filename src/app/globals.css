@@ -177,9 +177,9 @@ a:hover {
 /* ===== REDUCED MOTION (Accessibility) ===== */
 @media (prefers-reduced-motion: reduce) {
 
-  *,
-  *::before,
-  *::after {
+  *:not(.pacman-character):not(.pacman-eater):not(.pacman-eater-rtl):not(.pacman-game):not(.pacman-dots),
+  *:not(.pacman-character):not(.pacman-eater):not(.pacman-eater-rtl)::before,
+  *:not(.pacman-character):not(.pacman-eater):not(.pacman-eater-rtl)::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -451,4 +451,113 @@ body.vision-mode .grid-background {
 
 .btn-primary:hover::before {
   left: 0;
+}
+
+/* ===== PAC-MAN ANIMATION (Based on Alvaro Montoro's technique) ===== */
+.pacman-game {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Dots layer - sits behind Pac-Man */
+.pacman-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#00f3ff 20%, transparent 20%);
+  background-size: 30px 50px;
+  background-position: 15px 0;
+}
+
+/* Single black bar that follows Pac-Man in both directions */
+.pacman-eater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, #000 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  z-index: 1;
+  animation: eatDotsAll 4s linear infinite;
+}
+
+/* Hide the RTL element - not needed anymore */
+.pacman-eater-rtl {
+  display: none;
+}
+
+/* Pac-Man character */
+.pacman-character {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  border-radius: 50%;
+  background: conic-gradient(#FFD700 50deg, transparent 50deg 130deg, #FFD700 130deg);
+  z-index: 2;
+  animation: pacmanEat 0.35s steps(2) infinite, pacmanMove 4s linear infinite;
+}
+
+/* Mouth animation */
+@keyframes pacmanEat {
+  0%, 100% {
+    background: conic-gradient(#FFD700 50deg, transparent 50deg 130deg, #FFD700 130deg);
+  }
+  50% {
+    background: conic-gradient(#FFD700 10deg, transparent 10deg 20deg, #FFD700 20deg);
+  }
+}
+
+/* Pac-Man movement */
+@keyframes pacmanMove {
+  0% {
+    left: 5px;
+    transform: rotate(0deg);
+  }
+  49% {
+    left: calc(100% - 35px);
+    transform: rotate(0deg);
+  }
+  50% {
+    left: calc(100% - 35px);
+    transform: rotate(180deg);
+  }
+  99% {
+    left: 5px;
+    transform: rotate(180deg);
+  }
+  100% {
+    left: 5px;
+    transform: rotate(0deg);
+  }
+}
+
+/* Single animation: background-position slides to reveal/hide black */
+@keyframes eatDotsAll {
+  0% {
+    background-position: 100% 0;
+  }
+  49% {
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  99% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }

@@ -146,7 +146,7 @@ export default function About() {
           </motion.div>
 
           {/* Right Column - Content */}
-          <motion.div style={{ y: contentY }} className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <motion.div style={{ y: contentY }} className="space-y-6 text-left flex flex-col items-start">
             {/* Bio */}
             <motion.div
               variants={fadeInLeft}
@@ -155,13 +155,13 @@ export default function About() {
               viewport={{ once: true }}
               className="w-full"
             >
-              <p className="text-base sm:text-lg leading-relaxed">
+              <p className="text-base sm:text-lg leading-relaxed text-left">
                 I build vision systems that{' '}
                 <span className="text-cyan font-semibold">see</span>,{' '}
                 <span className="text-purple font-semibold">understand</span>, and{' '}
                 <span className="text-matrix font-semibold">act</span>.
               </p>
-              <p className="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+              <p className="mt-3 text-gray-400 text-sm sm:text-base leading-relaxed text-left">
                 As a Computer Vision Engineer, I specialize in designing and deploying
                 end-to-end machine learning pipelines that transform raw visual data
                 into actionable insights. My work spans from training deep learning
@@ -175,18 +175,18 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-4 text-left"
+              className="space-y-3 text-left w-full"
             >
               {highlights.map((item) => (
                 <motion.div
                   key={item.label}
                   variants={staggerItem}
-                  className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4"
+                  className="flex flex-row items-baseline gap-3"
                 >
-                  <span className="font-mono text-sm text-cyan uppercase tracking-wider min-w-[100px]">
+                  <span className="font-mono text-sm text-cyan uppercase tracking-wider shrink-0">
                     {item.label}:
                   </span>
-                  <span className="text-gray-300">{item.value}</span>
+                  <span className="text-gray-300 text-sm">{item.value}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -197,10 +197,11 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              className="w-full"
             >
-              <h3 className="text-xl font-mono mb-4 text-white">
+              <h3 className="text-lg font-mono mb-3 text-white">
                 <span className="text-purple">{'<'}</span>
-                What_I_Do
+                WHAT_I_DO
                 <span className="text-purple">{'/>'}</span>
               </h3>
               <motion.ul
@@ -208,15 +209,15 @@ export default function About() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="space-y-3"
+                className="space-y-2"
               >
                 {skills.map((skill, index) => (
                   <motion.li
                     key={index}
                     variants={staggerItem}
-                    className="flex items-start gap-3 text-gray-400"
+                    className="flex items-start gap-2 text-gray-400 text-sm"
                   >
-                    <span className="text-cyan mt-1">▹</span>
+                    <span className="text-cyan mt-0.5">▹</span>
                     {skill}
                   </motion.li>
                 ))}
@@ -229,7 +230,7 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mt-6 md:mt-8 p-3 sm:p-4 bg-black/50 border border-cyan/20 rounded-lg font-mono text-xs sm:text-sm"
+              className="w-full p-3 bg-black/50 border border-cyan/20 rounded-lg font-mono text-xs sm:text-sm"
             >
               <div className="text-muted mb-2">$ cat current_focus.txt</div>
               <div className="text-cyan break-words">
