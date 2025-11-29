@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
 // UI Components
@@ -40,24 +40,12 @@ function SectionSkeleton() {
 }
 
 export default function Home() {
+  // Preloader state
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
-  useEffect(() => {
-    // Preload critical assets during preloader
-    const preloadImages = async () => {
-      // Add any critical images to preload here
-      await Promise.all([
-        // Example: new Promise((resolve) => {
-        //   const img = new Image();
-        //   img.onload = resolve;
-        //   img.src = '/portrait.jpg';
-        // }),
-      ]);
-    };
-
-    preloadImages();
-  }, []);
+  // No heavy assets to preload currently, but keeping structure for future use
+  // The preloader is primarily for the "terminal init" aesthetic effect
 
   const handlePreloaderComplete = () => {
     setIsLoading(false);
@@ -78,9 +66,8 @@ export default function Home() {
 
       {/* Main Content */}
       <main
-        className={`transition-opacity duration-500 ${
-          showContent ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'
+          }`}
       >
         {/* Hero Section */}
         <Hero />

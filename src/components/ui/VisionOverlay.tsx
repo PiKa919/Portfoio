@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import styles from './VisionOverlay.module.css';
 
 interface VisionOverlayProps {
   children: ReactNode;
@@ -23,7 +24,7 @@ export default function VisionOverlay({
 
   return (
     <motion.div
-      className={`vision-box relative ${className}`}
+      className={`${styles.visionBox} ${className}`}
       data-confidence={displayConfidence}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

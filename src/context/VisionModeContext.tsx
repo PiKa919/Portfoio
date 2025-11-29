@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 
 interface VisionModeContextType {
   visionMode: boolean;
@@ -9,7 +9,7 @@ interface VisionModeContextType {
 
 const VisionModeContext = createContext<VisionModeContextType>({
   visionMode: false,
-  toggleVisionMode: () => {},
+  toggleVisionMode: () => { },
 });
 
 interface VisionModeProviderProps {
@@ -18,21 +18,22 @@ interface VisionModeProviderProps {
 
 export function VisionModeProvider({ children }: VisionModeProviderProps) {
   const [visionMode, setVisionMode] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const isInitialized = useRef(false);
 
   // Initialize vision mode based on device (default ON for mobile)
   useEffect(() => {
-    if (!isInitialized) {
+    if (!isInitialized.current) {
       const isMobile = window.innerWidth < 768;
       setVisionMode(isMobile); // Default ON for mobile
-      setIsInitialized(true);
+      isInitialized.current = true;
     }
-  }, [isInitialized]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     // Apply vision-mode class to body
     document.body.classList.toggle('vision-mode', visionMode);
-    
+
     // Clean up on unmount
     return () => {
       document.body.classList.remove('vision-mode');
