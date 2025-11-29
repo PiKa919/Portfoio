@@ -1,26 +1,336 @@
 @import "tailwindcss";
 
+/* ===== CSS VARIABLES ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette - Cyberpunk Minimalism */
+  --bg-void: #0a0a0a;
+  --bg-pure-black: #000000;
+  
+  --primary-cyan: #00f3ff;
+  --secondary-purple: #bd00ff;
+  --tertiary-green: #00ff88;
+  
+  --text-body: #e8e8e8;
+  --text-header: #ffffff;
+  --text-muted: #4a4a4a;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+  --gradient-glow: 0 0 20px rgba(0, 243, 255, 0.5);
+  
+  /* Spacing */
+  --section-padding: clamp(4rem, 10vw, 8rem);
+  
+  /* Default mode */
+  --background: var(--bg-void);
+  --foreground: var(--text-body);
+  --accent: var(--primary-cyan);
 }
 
+/* ===== TAILWIND THEME INLINE ===== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: #0a0a0a;
+  --color-cyan: #00f3ff;
+  --color-purple: #bd00ff;
+  --color-matrix: #00ff88;
+  --color-muted: #4a4a4a;
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-fira-code);
+  --font-gaming: var(--font-orbitron);
+  --font-tech: var(--font-rajdhani);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== BASE STYLES ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-gaming), var(--font-mono), 'Fira Code', monospace;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-header);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.3;
+}
+
+p {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: var(--text-body);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--primary-cyan);
+  color: var(--bg-void);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-cyan);
+}
+
+/* ===== FOCUS INDICATORS (Accessibility) ===== */
+*:focus-visible {
+  outline: 2px solid var(--primary-cyan);
+  outline-offset: 4px;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--primary-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary-purple);
+}
+
+/* ===== VISION MODE STYLES ===== */
+body.vision-mode {
+  --background: var(--bg-pure-black);
+  --foreground: var(--tertiary-green);
+  --accent: var(--tertiary-green);
+  filter: contrast(1.2);
+}
+
+body.vision-mode * {
+  border-color: rgba(0, 255, 136, 0.2) !important;
+}
+
+body.vision-mode h1,
+body.vision-mode h2,
+body.vision-mode h3,
+body.vision-mode p,
+body.vision-mode span {
+  color: var(--tertiary-green) !important;
+}
+
+body.vision-mode a {
+  color: var(--tertiary-green) !important;
+}
+
+body.vision-mode .vision-box::before {
+  content: "conf: " attr(data-confidence);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 10px;
+  color: var(--tertiary-green);
+  font-family: 'Fira Code', monospace;
+  opacity: 1;
+}
+
+body.vision-mode .vision-box {
+  border: 1px solid rgba(0, 255, 136, 0.4) !important;
+  position: relative;
+}
+
+/* ===== REDUCED MOTION (Accessibility) ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(189, 0, 255, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--section-padding) clamp(1rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.section-container h2,
+.section-container h3 {
+  text-align: center;
+}
+
+.section-container p {
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== TERMINAL STYLES ===== */
+.terminal-text {
+  font-family: var(--font-mono), 'Fira Code', monospace;
+  color: var(--primary-cyan);
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== PARTICLE CANVAS ===== */
+.particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== GRID BACKGROUND ===== */
+.grid-background {
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ===== GLITCH EFFECT ===== */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--primary-cyan);
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--secondary-purple);
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+  25% { clip-path: polygon(0 15%, 100% 15%, 100% 50%, 0 50%); }
+  50% { clip-path: polygon(0 40%, 100% 40%, 100% 75%, 0 75%); }
+  75% { clip-path: polygon(0 60%, 100% 60%, 100% 95%, 0 95%); }
+}
+
+@keyframes glitch-anim-2 {
+  0%, 100% { clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
+  25% { clip-path: polygon(0 45%, 100% 45%, 100% 80%, 0 80%); }
+  50% { clip-path: polygon(0 25%, 100% 25%, 100% 60%, 0 60%); }
+  75% { clip-path: polygon(0 5%, 100% 5%, 100% 40%, 0 40%); }
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-primary {
+  background: transparent;
+  border: 2px solid var(--primary-cyan);
+  color: var(--primary-cyan);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-cyan);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--bg-void);
+}
+
+.btn-primary:hover::before {
+  left: 0;
 }
