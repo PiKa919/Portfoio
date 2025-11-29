@@ -1,6 +1,29 @@
 {
-  "name": "neural-vision",
-  "version": "0.1.0",
+  "name": "ankit-das-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Ankit Das - Computer Vision Engineer specializing in deep learning, AI/ML systems, and production-ready vision pipelines.",
+  "author": {
+    "name": "Ankit Das",
+    "email": "ankitdas9810@gmail.com",
+    "url": "https://ankitdas.dev"
+  },
+  "homepage": "https://ankitdas.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PiKa919/Portfoio"
+  },
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "next.js",
+    "react",
+    "computer-vision",
+    "machine-learning",
+    "ai-engineer",
+    "typescript",
+    "tailwindcss",
+    "framer-motion"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",
