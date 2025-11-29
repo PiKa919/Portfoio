@@ -148,7 +148,7 @@ export default function About() {
           </motion.div>
 
           {/* Right Column - Content */}
-          <motion.div style={{ y: contentY }} className="space-y-8">
+          <motion.div style={{ y: contentY }} className="space-y-8 text-center lg:text-left">
             {/* Bio */}
             <motion.div
               variants={fadeInLeft}
@@ -176,7 +176,7 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-4"
+              className="space-y-4 text-left"
             >
               {highlights.map((item) => (
                 <motion.div

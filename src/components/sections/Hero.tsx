@@ -49,16 +49,16 @@ export default function Hero() {
       <div className="absolute inset-0 grid-background opacity-50" />
 
       {/* Content */}
-      <div className="relative z-10 section-container">
+      <div className="relative z-10 section-container px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
           {/* Left Column - Main Content */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-6 text-center lg:text-left">
             {/* Terminal prefix */}
             <motion.div
               variants={fadeInUp}
               initial="hidden"
               animate="visible"
-              className="font-mono text-sm text-cyan"
+              className="font-mono text-xs sm:text-sm text-cyan"
             >
               <span className="text-muted">&gt;</span> initializing portfolio
               <span className="cursor-blink ml-1">_</span>
@@ -69,7 +69,7 @@ export default function Hero() {
               variants={letterContainer}
               initial="hidden"
               animate="visible"
-              className="glitch"
+              className="glitch text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
               data-text={name}
             >
               {name.split('').map((letter, i) => (
@@ -107,7 +107,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.7 }}
-              className="max-w-xl text-lg text-gray-400 leading-relaxed"
+              className="max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-gray-400 leading-relaxed"
             >
               I build vision systems that{' '}
               <span className="text-cyan">see</span>,{' '}
@@ -121,7 +121,7 @@ export default function Hero() {
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap gap-3 sm:gap-4 pt-4 justify-center lg:justify-start"
             >
               <StatusItem
                 label="Focus"
@@ -148,7 +148,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               transition={{ delay: 1.2 }}
-              className="flex flex-wrap gap-4 pt-6"
+              className="flex flex-wrap gap-3 sm:gap-4 pt-6 justify-center lg:justify-start"
             >
               <motion.a
                 href="#projects"

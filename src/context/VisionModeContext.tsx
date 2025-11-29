@@ -18,6 +18,16 @@ interface VisionModeProviderProps {
 
 export function VisionModeProvider({ children }: VisionModeProviderProps) {
   const [visionMode, setVisionMode] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Initialize vision mode based on device (default ON for mobile)
+  useEffect(() => {
+    if (!isInitialized) {
+      const isMobile = window.innerWidth < 768;
+      setVisionMode(isMobile); // Default ON for mobile
+      setIsInitialized(true);
+    }
+  }, [isInitialized]);
 
   useEffect(() => {
     // Apply vision-mode class to body

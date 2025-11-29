@@ -285,20 +285,20 @@ export default function Contact() {
             className="space-y-8"
           >
             {/* Terminal-style info */}
-            <div className="p-6 bg-black/50 border border-cyan/20 rounded-lg font-mono">
-              <div className="text-muted text-sm mb-4">
+            <div className="p-4 sm:p-6 bg-black/50 border border-cyan/20 rounded-lg font-mono text-xs sm:text-sm overflow-x-auto">
+              <div className="text-muted mb-4">
                 $ fetch contact_info --format=json
               </div>
-              <div className="text-cyan">
+              <div className="text-cyan whitespace-nowrap sm:whitespace-normal">
                 <span className="text-purple">{'{'}</span>
                 <br />
-                <span className="ml-4">&quot;location&quot;: <span className="text-matrix">&quot;Mumbai, India&quot;</span>,</span>
+                <span className="ml-2 sm:ml-4">&quot;location&quot;: <span className="text-matrix">&quot;Mumbai, India&quot;</span>,</span>
                 <br />
-                <span className="ml-4">&quot;timezone&quot;: <span className="text-matrix">&quot;IST (UTC+5:30)&quot;</span>,</span>
+                <span className="ml-2 sm:ml-4">&quot;timezone&quot;: <span className="text-matrix">&quot;IST (UTC+5:30)&quot;</span>,</span>
                 <br />
-                <span className="ml-4">&quot;availability&quot;: <span className="text-matrix">&quot;Open to opportunities&quot;</span>,</span>
+                <span className="ml-2 sm:ml-4">&quot;availability&quot;: <span className="text-matrix">&quot;Open to opportunities&quot;</span>,</span>
                 <br />
-                <span className="ml-4">&quot;response_time&quot;: <span className="text-matrix">&quot;&lt;24 hours&quot;</span></span>
+                <span className="ml-2 sm:ml-4">&quot;response_time&quot;: <span className="text-matrix">&quot;&lt;24 hours&quot;</span></span>
                 <br />
                 <span className="text-purple">{'}'}</span>
               </div>
@@ -306,8 +306,8 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="font-mono text-white mb-4">Connect</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="font-mono text-white mb-4 text-sm sm:text-base">Connect</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {socialLinks.map((link) => (
                   <motion.a
                     key={link.name}
@@ -316,13 +316,13 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     variants={staggerItem}
                     whileHover={{ y: -5, borderColor: 'rgba(0, 243, 255, 0.5)' }}
-                    className="p-4 bg-void/50 border border-cyan/20 rounded-lg flex items-start gap-3 transition-colors group"
+                    className="p-3 sm:p-4 bg-void/50 border border-cyan/20 rounded-lg flex items-start gap-3 transition-colors group"
                   >
                     <span className="text-cyan group-hover:text-white transition-colors">
                       {link.icon}
                     </span>
                     <div>
-                      <span className="block font-mono text-white group-hover:text-cyan transition-colors">
+                      <span className="block font-mono text-white text-sm group-hover:text-cyan transition-colors">
                         {link.name}
                       </span>
                       <span className="text-xs text-muted flex items-center gap-1">
