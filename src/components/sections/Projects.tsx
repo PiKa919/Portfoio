@@ -16,6 +16,7 @@ interface Project {
   approach?: string;
   results?: string;
   github?: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -30,6 +31,7 @@ const projects: Project[] = [
     problem: 'Metro stations struggle with unpredictable passenger flow, leading to overcrowding and safety concerns.',
     approach: 'Implemented YOLOv8 for person detection with custom tracking algorithms to monitor queue density in real-time.',
     results: 'Achieved 85% accuracy in real-world environments with <200ms inference time.',
+    image: '/images/project_pune_metro.png',
   },
   {
     id: 'visiondoc',
@@ -42,6 +44,7 @@ const projects: Project[] = [
     problem: 'Manual diagnosis of eye diseases is time-consuming and requires specialist expertise.',
     approach: 'Created an ensemble model combining ResNet and EfficientNetB3 with extensive hyperparameter tuning.',
     results: '93% accuracy via hyperparameter optimization, processed 10K+ images during training.',
+    image: '/images/project_visiondoc.png',
   },
   {
     id: 'stocksight',
@@ -54,6 +57,7 @@ const projects: Project[] = [
     problem: 'Traditional analysis methods fail to capture complex temporal patterns in stock data.',
     approach: 'Built LSTM architecture with attention mechanisms, trained on historical tech stock data.',
     results: 'Achieved minimal RMSE for tech stock predictions with robust backtesting results.',
+    image: '/images/project_stocksight.png',
   },
   {
     id: 'pratishtha',
@@ -66,6 +70,7 @@ const projects: Project[] = [
     problem: 'Needed an engaging digital platform to showcase the cultural fest and handle registrations.',
     approach: 'Combined 3D web graphics with efficient backend systems for seamless user experience.',
     results: 'Successfully handled 5000+ users during peak traffic with zero downtime.',
+    image: '/images/project_pratishtha.png',
   },
 ];
 
@@ -186,23 +191,30 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
       whileHover={{ y: -10 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className={`w-[280px] sm:w-[320px] md:w-[400px] h-[420px] sm:h-[450px] md:h-[480px] bg-void/80 backdrop-blur-sm border rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer transition-all duration-300 flex flex-col ${
-        colorClasses[project.color as keyof typeof colorClasses]
-      } ${glowClasses[project.color as keyof typeof glowClasses]}`}
+      className={`w-[280px] sm:w-[320px] md:w-[400px] h-[420px] sm:h-[450px] md:h-[480px] bg-void/80 backdrop-blur-sm border rounded-xl p-4 sm:p-5 md:p-6 cursor-pointer transition-all duration-300 flex flex-col ${colorClasses[project.color as keyof typeof colorClasses]
+        } ${glowClasses[project.color as keyof typeof glowClasses]}`}
     >
       {/* Preview Area */}
       <div className="h-32 sm:h-36 md:h-40 bg-black/50 rounded-lg mb-4 sm:mb-5 md:mb-6 overflow-hidden relative">
-        {/* Animated preview placeholder */}
+        {/* Animated preview placeholder or Image */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            className={`w-20 h-20 border-2 border-${project.color}/50 rounded-lg flex items-center justify-center`}
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          >
-            <span className={`text-${project.color} font-mono text-xs`}>
-              [PREVIEW]
-            </span>
-          </motion.div>
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          ) : (
+            <motion.div
+              className={`w-20 h-20 border-2 border-${project.color}/50 rounded-lg flex items-center justify-center`}
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            >
+              <span className={`text-${project.color} font-mono text-xs`}>
+                [PREVIEW]
+              </span>
+            </motion.div>
+          )}
         </div>
 
         {/* Decorative elements */}

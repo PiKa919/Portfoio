@@ -64,16 +64,14 @@ export default function About() {
               delay={0.2}
             >
               <div className="relative aspect-[3/4] bg-gradient-to-br from-cyan/10 to-purple/10 rounded-lg overflow-hidden border border-cyan/20">
-                {/* Placeholder for actual portrait image */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan/30 to-purple/30 flex items-center justify-center">
-                      <span className="text-3xl sm:text-4xl font-mono text-cyan">AD</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-muted font-mono">
-                      [Portrait Image]
-                    </p>
-                  </div>
+                {/* Portrait Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src="/images/portrait.png"
+                    alt="Ankit Das - Computer Vision Engineer"
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
                 </div>
 
                 {/* Detection boxes */}
