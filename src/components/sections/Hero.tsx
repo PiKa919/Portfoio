@@ -60,8 +60,8 @@ export default function Hero() {
       <div className="absolute inset-0 grid-background opacity-50" />
 
       {/* Content */}
-      <div className="relative z-10 section-container px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center w-full">
+      <div className="relative z-10 section-container px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center w-full max-w-6xl mx-auto">
           {/* Left Column - Main Content */}
           <div className="lg:col-span-3 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
             {/* Terminal prefix */}

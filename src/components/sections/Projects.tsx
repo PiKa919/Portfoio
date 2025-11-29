@@ -82,7 +82,7 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="relative min-h-screen py-16 md:py-20">
+    <section id="projects" className="relative py-12 md:py-16">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/95 to-void" />
 
@@ -93,13 +93,13 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="section-container px-4 sm:px-6 mb-6 md:mb-8"
+          className="section-container px-4 sm:px-6 lg:px-8 mb-6 md:mb-8"
         >
           <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// MODEL ZOO'}
           </span>
           <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Featured Projects</h2>
-          <p className="mt-3 md:mt-4 text-gray-400 text-sm sm:text-base max-w-2xl">
+          <p className="mt-3 md:mt-4 text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
             A collection of computer vision and machine learning projects that
             demonstrate end-to-end pipeline development, from research to deployment.
           </p>
@@ -120,7 +120,7 @@ export default function Projects() {
           {/* Carousel Container */}
           <motion.div
             ref={containerRef}
-            className="flex gap-6 overflow-x-auto pb-8 px-4 md:px-8 lg:px-16 snap-x snap-mandatory scrollbar-hide"
+            className="flex gap-6 overflow-x-auto pb-8 px-4 md:px-8 lg:px-16 snap-x snap-mandatory scrollbar-hide justify-center"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {projects.map((project, index) => (

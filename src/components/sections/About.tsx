@@ -31,19 +31,19 @@ export default function About() {
     <section
       id="about"
       ref={containerRef}
-      className="relative min-h-screen py-16 md:py-20 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-void via-void/95 to-void" />
 
-      <div className="relative z-10 section-container px-4 sm:px-6">
+      <div className="relative z-10 section-container px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mb-10 md:mb-16 w-full"
+          className="mb-8 md:mb-12 w-full"
         >
           <span className="font-mono text-cyan text-xs sm:text-sm tracking-wider">
             {'// SYSTEM IDENTIFICATION'}
@@ -51,7 +51,7 @@ export default function About() {
           <h2 className="mt-3 md:mt-4 gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl">From Data to Deployment</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start w-full max-w-5xl mx-auto">
           {/* Left Column - Image with CV Overlay */}
           <motion.div
             style={{ y: imageY }}

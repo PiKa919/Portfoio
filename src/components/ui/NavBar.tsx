@@ -47,12 +47,15 @@ export default function NavBar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+          {/* Spacer for balance on desktop */}
+          <div className="hidden md:block w-24" />
+          
+          {/* Logo - Centered */}
           <motion.a
             href="#hero"
-            className="font-mono text-lg md:text-xl font-bold text-white interactive"
+            className="font-mono text-lg md:text-xl font-bold text-white interactive absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
@@ -65,7 +68,7 @@ export default function NavBar() {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <motion.a
                 key={link.name}

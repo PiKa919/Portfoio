@@ -131,11 +131,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen py-16 md:py-20">
+    <section id="contact" className="relative py-12 md:py-16">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void/95 to-void" />
 
-      <div className="relative z-10 section-container px-4 sm:px-6">
+      <div className="relative z-10 section-container px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           variants={fadeInUp}
@@ -154,7 +154,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full max-w-6xl text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full max-w-5xl mx-auto text-left">
           {/* Contact Form */}
           <motion.div
             variants={fadeInUp}

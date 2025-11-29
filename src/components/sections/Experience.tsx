@@ -166,18 +166,18 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative min-h-screen py-16 md:py-24 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void to-void/95" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12 md:mb-16 w-full"
+          className="text-center mb-8 md:mb-12 w-full"
         >
           <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
             <span className="w-8 sm:w-16 h-[1px] bg-gradient-to-r from-transparent to-cyan" />
@@ -242,7 +242,7 @@ export default function Experience() {
         </motion.div>
 
         {/* Experience Cards */}
-        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full max-w-5xl">
+        <div className="sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full max-w-5xl mx-auto">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}

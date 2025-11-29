@@ -66,7 +66,7 @@ export default function Home() {
 
       {/* Main Content */}
       <main
-        className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'
+        className={`transition-opacity duration-500 w-full flex flex-col items-center ${showContent ? 'opacity-100' : 'opacity-0'
           }`}
       >
         {/* Hero Section */}
